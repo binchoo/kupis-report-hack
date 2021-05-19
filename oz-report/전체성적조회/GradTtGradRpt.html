@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>
+<html>
+
+<head>
+	<title>OZReport Preview</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	</meta>
+	<meta http-equiv="Content-Type" content="application/x-www-form-urlencoded; charset=utf-8">
+	</meta>
+	<style>
+		div#std-info {
+			display: flex;
+			flex-flow: column;
+			height: 300px;
+		}
+
+		div#std-info>input,
+		button {
+			margin: 2px;
+			width: 200px;
+		}
+
+		input#oz_param {
+			width: 100%;
+		}
+	</style>
+	<script src="https://kuis.konkuk.ac.kr/ui/lib/aes.js"></script>
+	<script type="text/javascript">
+		var generateOzParam = function () {
+			const hash = Math.floor(Math.random() * 1000).toString();
+			const stdId = document.querySelector("input#std-id").value;
+			const param =
+				`/acd_dir/grad/allg/GradTtGradRpt.ozr|argStdNo=${stdId}|argStaffGb=2|serverNm=SCHAFF|${hash}|${hash}|127.0.0.1`;
+			const ozParam = CryptoJS.AES.encrypt(param, "/SM01dQ69b6xwIYgpR5vWIU40ugJZNRlGTrQgRjU454=").toString();
+
+			console.log(param)
+			console.log(ozParam)
+
+			document.querySelector("input#oz_param").value = ozParam;
+		}
+	</script>
+	<script type="text/javascript">
+		var openReport = function () {
+			const form = document.querySelector('form');
+			const ozParam = document.querySelector("input#oz_param").value;
+			if (ozParam.length > 0)
+
+				form.submit();
+			else
+				alert('ozParam을 먼저 생성하세요.');
+		}
+	</script>
+</head>
+
+<body>
+	<div id="std-info">
+		<input id="std-id" placeholder="학번" />
+		<button onclick="generateOzParam()">ozParam 생성하기</button>
+	</div>
+
+	<div>
+		<form name="ozReport" id="ozReport" method="post" accept-charset="euc-kr"
+			action="https://kureport.konkuk.ac.kr:8443/oz70/reportKUIS.jsp">
+			<input id="oz_param" name="oz_param" placeholder="ozParam이 생성됩니다." readonly />
+		</form>
+		<button onclick="openReport()">레포트 열기</button>
+	</div>
+
+</body>
+
+</html>
