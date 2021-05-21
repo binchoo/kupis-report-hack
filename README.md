@@ -20,7 +20,7 @@ oz_param=...
     `CryptoJS.AES.encrypt(param, 하드코딩한 값)`
 
    
-2.  `oz_param`에 잡다하게 정보가 들어가긴 하는데, 조회에 필요한 개인정보 `학번` 정도면 서비스 받을 수 다. 나머지는 랜덤 값으로 짬 처리 하면 된다.
+2.  `oz_param`에 잡다하게 정보가 들어가긴 하는데, 조회에 필요한 개인정보 `학번` 정도면 서비스 받을 수 있다. 나머지는 랜덤 값으로 짬 처리 하면 된다.
 
     `param = '/acd_dir/grad/allg/${모듈}|argStdNo=${stdId}|argStaffGb=2|serverNm=SCHAFF|${hash}|${hash}|127.0.0.1';`
 
