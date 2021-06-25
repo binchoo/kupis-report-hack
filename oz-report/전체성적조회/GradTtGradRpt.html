@@ -30,7 +30,7 @@
 			const hash = Math.floor(Math.random() * 1000).toString();
 			const stdId = document.querySelector("input#std-id").value;
 			const param =
-				`/acd_dir/grad/allg/KU_GradTtGradRpt.ozr|argStdNo=${stdId}|argStaffGb=2|serverNm=SCHAFF|${hash}|${hash}|127.0.0.1`;
+				`/acd_dir/grad/allg2/KU_GradTtGradRpt.ozr|argStdNo=${stdId}|argStaffGb=2|serverNm=SCHAFF|${hash}|${hash}|127.0.0.1`;
 			const ozParam = CryptoJS.AES.encrypt(param, "/SM01dQ69b6xwIYgpR5vWIU40ugJZNRlGTrQgRjU454=").toString();
 
 			console.log(param)
